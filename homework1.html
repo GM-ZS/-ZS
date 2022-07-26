@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            border: 0px;
+            padding: 0;
+            font-size: 16px;
+            font-family: "Microsoft yahei";
+            font-weight: 500;
+        }
+
+        body {
+            display: flex;
+            background-color: aquamarine;
+        }
+
+        .container {
+            width: 650px;
+            height: 663px;
+            background-color: pink;
+            margin: auto;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            overflow: auto;
+            /* display: flex; */
+            /* border: 1px solid; */
+        }
+
+        head {
+            display: block;
+            width: 100%;
+            height: 175px;
+            /* background-color: pink; */
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 25px;
+            font-weight: 700;
+            color: white;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        .add {
+            height: 100px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        input {
+            display: block;
+            height: 50px;
+            border: 0px;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        input.text {
+            /* width: px; */
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            color: gray;
+            padding-left: 10px;
+            margin-right: 0px;
+            /* font-size: 16px; */
+        }
+
+        input.button {
+            width: 100px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            background-color: rgb(231, 118, 137);
+            color: rgb(92, 87, 88);
+            margin-left: 0px;
+            cursor: pointer;
+            /* 光标样式-手指 */
+            transition: .3s;
+        }
+
+        .button:hover {
+            background-color: rgb(211, 98, 117);
+        }
+
+        footer {
+            height: 470px;
+            background-color: aliceblue;
+        }
+
+        /* 从列表中删除边距和填充 */
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 设置ul li 的样式 */
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+            list-style: none;
+
+
+            /* 使列表项不可选择 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* 将所有奇数列表项设置为不同的颜色（斑马条纹） */
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* 悬停时背景颜色较深 */
+        ul li:hover {
+            background: #ddd;
+        }
+
+        /* 单击后，添加背景色并显示删除文本效果 */
+        ul li.checked {
+            background: rgb(228, 194, 194);
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        /* 单击时添加“选中”标记 */
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+
+        /* 设置关闭按钮的样式 */
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 13.5px;
+
+        }
+
+        .close:hover {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <head id="myDIV" class="header">
+            <h4>My To Do List</h4>
+            <div class="add">
+                <input class="text" type="text" id="myInput" placeholder="记录一下" style="width: 400px;">
+                <input class="button" type="button" value="Add" onclick="newElement()">
+            </div>
+        </head>
+
+        <footer>
+            <ul id="myUL">
+                <li>搬砖</li>
+                <li class="checked">玩游戏</li>
+                <li class="checked">吃饭</li>
+                <li>写作业</li>
+                <li>看书</li>
+                <li class="checked">追剧</li>
+                <li>打篮球</li>
+                <li>锻炼身体</li>
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+        //功能需求
+        //1.单击关闭按钮隐藏当前列表项
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            //createElement()去创建span元素
+            var span = document.createElement("SPAN");
+            //包含一个文本内容：×
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            //将文本内容包含至span标签
+            span.appendChild(txt);
+            //为所有的li标签添加span元素及其内容
+            myNodelist[i].appendChild(span);
+        }
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var r = confirm('确认删除该事项吗?')
+                if (r == true) {
+                    //执行删除功能——先找到父级元素
+                    var div = this.parentElement;
+                    //设置其display的属性为none，实现隐藏效果
+                    div.style.display = "none";
+                }
+            }
+        }
+        //2.单击列表项内容时添加“选中”效果
+        //querySelector()方法 返回文档中匹配指定的css选择器的一个元素
+        var list = document.querySelector('ul');
+        //addEventListener()方法在文档中添加事件监听 参数1：具体的事件，参数2：执行的函数（方法），参数3：默认为false的参数，默认在冒泡执行，如为ture 则为拦截执行
+        list.addEventListener('click', function (ev) {
+            //target:事件属性 可返回时间的目标节点 （触发事件的节点）
+            //tagName:获取元素的标签名；ev.target.tagName :表示触发事件的节点的名字 ：在这里应该就是li标签的名字，即为li
+            if (ev.target.tagName === 'LI') {
+                //将对应的元素的CSS类名 进行切换 用当下的类名与目标（checked）进行切换，再次触发时间则往回切换
+                ev.target.classList.toggle('checked');
+            }
+        }, false);
+        //3.单击“添加”按钮时创建一个新的列表项
+        function newElement() {
+            //要实现创建新的li元素
+            var li = document.createElement("li");
+            //获取input输入框里的内容
+            var inputValue = document.getElementById("myInput").value;
+            //将获取到的内容 包含至 li 元素中
+            var t = document.createTextNode(inputValue);
+            //对元素及内容进行组合
+            li.appendChild(t);
+            //判断输入框的内容是否为空
+            if (inputValue === "") {
+                alert("输入框内容不能为空！")
+            } else {
+                //将li的内容包含至ul中
+                document.getElementById("myUL").appendChild(li);
+            }
+            //初始化输入框的内容为空
+            document.getElementById('myInput').value = "";
+            //新增创建一个span元素
+            var span = document.createElement("SPAN");
+            //为元素添加一个删除符号
+            var txt = document.createTextNode("×");
+            //令该span元素的类名为close
+            span.className = "close";
+            //将该span元素包含值li元素中
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var r = confirm('确认删除该事项吗?')
+                    if (r == true) {
+                        //执行删除功能——先找到父级元素
+                        var div = this.parentElement;
+                        //设置其display的属性为none，实现隐藏效果
+                        div.style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
