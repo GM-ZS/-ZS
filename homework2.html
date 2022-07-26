@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zn-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            border: 0px;
+            padding: 0;
+        }
+
+        body {
+            background-color: pink;
+        }
+
+        div {
+            width: 443px;
+            height: 684px;
+            /* border: 1px solid; */
+            margin: 20px auto;
+        }
+
+        input {
+            display: block;
+            font-size: 35px;
+            /* color: #fff; */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 130px;
+            /* box-sizing: border-box; */
+            background-color: rgb(44, 25, 38);
+        }
+
+        footer {
+            display: grid;
+            /* 四列 */
+            grid-template-columns: 110px 110px 110px 110px;
+            /* 五行 */
+            grid-template-rows: 110px 110px 110px 110px 110px;
+            gap: 1px;
+            background-color: #fff;
+        }
+
+        input[type="button"] {
+            background-color: rgb(251, 226, 242);
+        }
+
+        input:first-child {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+
+        input:last-child {
+            grid-column-start: 3;
+            grid-column-end: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <head>
+            <input type="text" id="input" readonly="readonly" style="color: #fff;">
+        </head>
+
+        <footer>
+            <input type="button" value="AC" onclick="test(this)">
+            <input type="button" value="清除" onclick="test(this)">
+            <input type="button" value="/" onclick="test(this)">
+            <input type="button" value="1" onclick="test(this)">
+            <input type="button" value="2" onclick="test(this)">
+            <input type="button" value="3" onclick="test(this)">
+            <input type="button" value="*" onclick="test(this)">
+            <input type="button" value="4" onclick="test(this)">
+            <input type="button" value="5" onclick="test(this)">
+            <input type="button" value="6" onclick="test(this)">
+            <input type="button" value="+" onclick="test(this)">
+            <input type="button" value="7" onclick="test(this)">
+            <input type="button" value="8" onclick="test(this)">
+            <input type="button" value="9" onclick="test(this)">
+            <input type="button" value="-" onclick="test(this)">
+            <input type="button" value="." onclick="test(this)">
+            <input type="button" value="0" onclick="test(this)">
+            <input type="button" value="=" onclick="test(this)">
+        </footer>
+    </div>
+
+    <script>
+        function test(btn) {
+            //获取button按钮对象
+            var number = btn.value;
+            //执行对应的业务逻辑
+            switch (number) {
+                case "=":
+                    document.getElementById("input").value = eval(document.getElementById("input").value);
+                    break;
+                case "AC":
+                    document.getElementById("input").value = "";
+                    break;
+                case "清除":
+                    document.getElementById("input").value = "";
+                    break;
+                default:
+                    //将按钮的值赋值给input输入框
+                    document.getElementById("input").value += number;
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
