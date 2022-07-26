@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开学时间倒计时</title>
+    <style>
+        * {
+            border: 0px;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            background-color: pink;
+        }
+
+        div {
+            /* border: 1px red solid; */
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body onload="countTime()">
+    <div>
+        <span>开学倒计时：</span>
+        <span id="_d">00</span>
+        <span id="_h">00</span>
+        <span id="_m">00</span>
+        <span id="_s">00</span>
+    </div>
+
+    <script>
+        function countTime() {
+            //获取当前时间  
+            var date = new Date();
+            var now = date.getTime();
+            //设置截止时间  
+            var str = '2022-09-01 00:00:00';
+            var endDate = new Date(str);
+            var end = endDate.getTime();
+            //时间差  
+            var leftTime = end - now;
+            //定义变量 d,h,m,s保存倒计时的时间  
+            var d, h, m, s;
+            if (leftTime >= 0) {
+                d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+                h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
+                m = Math.floor(leftTime / 1000 / 60 % 60);
+                s = Math.floor(leftTime / 1000 % 60);
+            }
+            //将倒计时赋值到div中  
+            if (d < 10) {
+                document.getElementById("_d").innerHTML = '0' + d + "天";
+            } else {
+                document.getElementById("_d").innerHTML = d + "天";
+            }
+
+            if (h < 10) {
+                document.getElementById("_h").innerHTML = '0' + h + "时";
+            } else {
+                document.getElementById("_h").innerHTML = h + "时";
+            }
+
+            if (m < 10) {
+                document.getElementById("_m").innerHTML = '0' + m + "分";
+            } else {
+                document.getElementById("_m").innerHTML = m + "分";
+            }
+
+            if (s < 10) {
+                document.getElementById("_s").innerHTML = '0' + s + "秒";
+            } else {
+                document.getElementById("_s").innerHTML = s + "秒";
+            }
+            //递归每秒调用countTime方法，显示动态时间效果  
+            setTimeout(countTime, 1000);
+        }  
+    </script>
+</body>
+
+</html>
