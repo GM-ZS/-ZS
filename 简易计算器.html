@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易计算器</title>
+    <script>
+        for (; ;) {
+            var num = prompt('欢迎使用简易计算器;\n 1.加法运算;\n 2.减法运算;\n 3.乘法运算;\n 4.除法运算;\n 5.退出;\n 请输入您的选项：');
+            //加法
+            if (num == 1) {
+                var num1 = prompt('请输入第一个数字');
+                var num2 = prompt('请输入第二个数字');
+                // console.log(typeof num1);
+                alert('计算结果为：' + ((num1 - 0) + (num2 - 0)));
+            }
+            //减法
+            if (num == 2) {
+                var num1 = prompt('请输入第一个数字');
+                var num2 = prompt('请输入第二个数字');
+                // console.log(typeof num1);
+                alert('计算结果为：' + ((num1 - 0) - (num2 - 0)));
+            }
+            //乘法
+            if (num == 3) {
+                var num1 = prompt('请输入第一个数字');
+                var num2 = prompt('请输入第二个数字');
+                // console.log(typeof num1);
+                alert('计算结果为：' + ((num1 - 0) * (num2 - 0)));
+            }
+            //除法
+            if (num == 4) {
+                var num1 = prompt('请输入第一个数字');
+                var num2 = prompt('请输入第二个数字');
+                // console.log(typeof num1);
+                alert('计算结果为：' + ((num1 - 0) / (num2 - 0)));
+            }
+            //退出
+            if (num == 5) {
+                break;
+            }
+            //异常
+            if (num != 1 && num != 2 && num != 3 && num != 4 && num != 5) {
+                alert('你输入的数字有误！')
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+
+</body>
+
+</html>
