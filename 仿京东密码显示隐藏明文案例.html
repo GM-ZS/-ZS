@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 400px;
+            margin: 100PX auto;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            /* margin-top: 50px; */
+        }
+
+        .box input {
+            width: 370px;
+            height: 30px;
+            border: 0;
+            outline: none;
+        }
+
+        img {
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            top: 0px;
+            right: -5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <label for="">
+            <img src="./img/0b8632a0c1501c7de882cb08789fcf0c_1230141489251612305.png" alt="" id="eye">
+        </label>
+        <input type="password" id="psw">
+    </div>
+
+    <script>
+        //获取对象
+        var img = document.querySelector('#eye');
+        var input = document.querySelector('#psw');
+        //注册事件  处理程序
+        var flot = 0;
+        img.onclick = function () {
+            if (flot == 0) {
+                input.type = 'text';
+                img.src = './img/眼睛.png';
+                flot = 1;
+            } else {
+                input.type = 'password';
+                img.src = './img/0b8632a0c1501c7de882cb08789fcf0c_1230141489251612305.png';
+                flot = 0;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
